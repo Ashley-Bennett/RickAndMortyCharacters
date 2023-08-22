@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
 const characterData = reactive({})
+
 const props = defineProps({
   searchTerm: String
 })
+
 onMounted(() => {
   console.log('here')
   console.log(props)
-
   fetchData()
 })
+
+const emit = defineEmits(['submitted', 'characterData'])
+
 function fetchData() {
   fetch(`https://rickandmortyapi.com/api/character/?name=${props.searchTerm}&page=1`)
     .then((response) => {
@@ -27,6 +31,7 @@ function fetchData() {
     })
     .finally(() => {
       // loading logic
+      emit('submitted', false)
     })
 }
 </script>
