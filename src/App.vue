@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SearchForm from '@/components/SearchForm.vue'
 import DataFetcher from '@/components/DataFetcher.vue'
+import CharacterCard from './components/CharacterCard/CharacterCard.vue'
 import { ref } from 'vue'
 
 const searchTerm = ref('')
@@ -22,6 +23,11 @@ const characterData = ref(null)
       />
     </div>
     <div v-if="characterData">
+      <CharacterCard
+        v-for="(character, index) in characterData"
+        :key="index"
+        :characterData="character"
+      />
       {{ characterData }}
     </div>
   </main>

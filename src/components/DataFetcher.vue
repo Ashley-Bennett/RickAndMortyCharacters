@@ -24,7 +24,7 @@ function fetchData() {
     })
     .then((data) => {
       console.log(data)
-      emit('characterData', data)
+      emit('characterData', data.results)
     })
     .catch((error) => {
       console.error('Error fetching data: ', error)
