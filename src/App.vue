@@ -5,6 +5,7 @@ import { ref } from 'vue'
 
 const searchTerm = ref('')
 const submitted = ref(false)
+const characterData = ref(null)
 </script>
 
 <template>
@@ -17,9 +18,12 @@ const submitted = ref(false)
       <DataFetcher
         :searchTerm="searchTerm"
         @submitted="(resetSubmitted) => (submitted = resetSubmitted)"
+        @characterData="(newCharacterData) => (characterData = newCharacterData)"
       />
     </div>
-    {{ searchTerm }}
+    <div v-if="characterData">
+      {{ characterData }}
+    </div>
   </main>
 </template>
 

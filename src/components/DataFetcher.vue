@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
-const characterData = reactive({})
 
 const props = defineProps({
   searchTerm: String
@@ -25,6 +24,7 @@ function fetchData() {
     })
     .then((data) => {
       console.log(data)
+      emit('characterData', data)
     })
     .catch((error) => {
       console.error('Error fetching data: ', error)
@@ -35,7 +35,5 @@ function fetchData() {
     })
 }
 </script>
-<template lang="">
-  <button @click="fetchData">get ricks</button>
-</template>
+<template lang="">Loading</template>
 <style lang=""></style>
