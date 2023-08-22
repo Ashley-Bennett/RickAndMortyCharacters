@@ -22,7 +22,7 @@ const characterData = ref(null)
         @characterData="(newCharacterData) => (characterData = newCharacterData)"
       />
     </div>
-    <div v-if="characterData">
+    <div v-if="characterData" class="characterCardWrapper">
       <CharacterCard
         v-for="(character, index) in characterData"
         :key="index"
@@ -33,4 +33,9 @@ const characterData = ref(null)
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.characterCardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>

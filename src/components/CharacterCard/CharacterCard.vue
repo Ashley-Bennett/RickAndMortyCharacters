@@ -17,9 +17,9 @@ if (props.characterData) {
 }
 </script>
 <template lang="">
-  <div>
-    <h3>{{ characterData.name }}</h3>
-    <img v-bind:src="characterData.image" alt="" srcset="" />
+  <div class="characterCard">
+    <h3 class="name">{{ characterData.name }}</h3>
+    <img :src="characterData.image" alt="" srcset="" />
     <CharacterCardInfoBox
       v-for="(dataSet, index) in characterDataArray"
       :key="index"
@@ -28,4 +28,26 @@ if (props.characterData) {
     />
   </div>
 </template>
-<style lang=""></style>
+<style scoped>
+.characterCard {
+  display: flex;
+  flex-direction: column;
+  border: #bfde42 17px solid;
+  background: #42b4ca;
+  max-width: 300px;
+  height: 550px;
+  border-radius: 20px;
+  padding: 5px 20px;
+  margin: 20px;
+}
+
+.characterCard img {
+  max-width: 314px;
+  border: #bfde42 6px solid;
+  border-radius: 5px;
+}
+
+.name {
+  color: white;
+}
+</style>

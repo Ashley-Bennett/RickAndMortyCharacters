@@ -5,6 +5,24 @@ const props = defineProps({
 })
 </script>
 <template lang="">
-  <div>{{ dataName }}: {{ data }}</div>
+  <div class="infoBoxWrapper">
+    <p class="bold">{{ dataName }}:</p>
+    <p>
+      {{ data }}
+    </p>
+  </div>
 </template>
-<style lang=""></style>
+<style>
+.infoBoxWrapper {
+  display: flex;
+  justify-content: space-between;
+  background: #bfde42;
+  margin: 10px 0;
+  color: #193840;
+  border-radius: 5px;
+  padding: 5px;
+}
+.bold {
+  font-weight: bold;
+}
+</style>
