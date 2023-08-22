@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 const characterData = reactive({})
+const props = defineProps({
+  searchTerm: String
+})
+onMounted(() => {
+  console.log('here')
+  console.log(props)
 
-function fetchData(charcterName: string) {
-  fetch('https://rickandmortyapi.com/api/character/?name=rick&page=1')
+  fetchData()
+})
+function fetchData() {
+  fetch(`https://rickandmortyapi.com/api/character/?name=${props.searchTerm}&page=1`)
     .then((response) => {
       if (response.ok) {
         console.log(response)
