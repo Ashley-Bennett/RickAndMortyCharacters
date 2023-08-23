@@ -2,7 +2,8 @@
 import { onMounted, reactive } from 'vue'
 
 const props = defineProps({
-  searchTerm: String
+  searchTerm: String,
+  currentPage: Number
 })
 
 onMounted(() => {
@@ -11,10 +12,14 @@ onMounted(() => {
   fetchData()
 })
 
-const emit = defineEmits(['submitted', 'characterData'])
+const emit = defineEmits(['submitted', 'characterData', 'totalPages'])
 
 function fetchData() {
-  fetch(`https://rickandmortyapi.com/api/character/?name=${props.searchTerm}&page=1`)
+  console.log(props.searchTerm)
+
+  fetch(
+    `https://rickandmortyapi.com/api/character/?name=${props.searchTerm}&page=${props.currentPage}`
+  )
     .then((response) => {
       if (response.ok) {
         console.log(response)
@@ -25,6 +30,7 @@ function fetchData() {
     .then((data) => {
       console.log(data)
       emit('characterData', data.results)
+      emit('totalPages', data.info.pages)
     })
     .catch((error) => {
       console.error('Error fetching data: ', error)

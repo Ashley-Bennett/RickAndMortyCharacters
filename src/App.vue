@@ -2,11 +2,18 @@
 import SearchForm from '@/components/SearchForm.vue'
 import DataFetcher from '@/components/DataFetcher.vue'
 import CharacterCard from './components/CharacterCard/CharacterCard.vue'
-import { ref } from 'vue'
+import PaginationContainer from './components/Pagination/PaginationContainer.vue'
+import { ref, watch } from 'vue'
 
 const searchTerm = ref('')
 const submitted = ref(false)
-const characterData = ref(null)
+const characterData: any = ref(null)
+const currentPage = ref(1)
+const totalPages: any = ref(0)
+watch(currentPage, () => {
+  characterData.value = null
+  submitted.value = true
+})
 </script>
 
 <template>
@@ -18,17 +25,24 @@ const characterData = ref(null)
     <div v-if="submitted">
       <DataFetcher
         :searchTerm="searchTerm"
+        :currentPage="currentPage"
         @submitted="(resetSubmitted) => (submitted = resetSubmitted)"
         @characterData="(newCharacterData) => (characterData = newCharacterData)"
+        @totalPages="(newTotalPages) => (totalPages = newTotalPages)"
       />
     </div>
-    <div v-if="characterData" class="characterCardWrapper">
-      <CharacterCard
-        v-for="(character, index) in characterData"
-        :key="index"
-        :characterData="character"
+    <div v-if="characterData">
+      <div class="characterCardWrapper">
+        <CharacterCard
+          v-for="(character, index) in characterData"
+          :key="index"
+          :characterData="character"
+        />
+      </div>
+      <PaginationContainer
+        :totalPages="totalPages"
+        @goToPage="(goToPage) => (currentPage = goToPage)"
       />
-      {{ characterData }}
     </div>
   </main>
 </template>
