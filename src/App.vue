@@ -17,6 +17,7 @@ watch(currentPage, () => {
 
 function searched() {
   submitted.value = true
+  characterData.value = null
   currentPage.value = 1
 }
 </script>

@@ -35,10 +35,15 @@ if (props.characterData) {
   border: #bfde42 17px solid;
   background: #42b4ca;
   max-width: 300px;
-  height: 550px;
+  min-height: 550px;
   border-radius: 20px;
   padding: 5px 20px;
   margin: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.characterCard:hover {
+  scale: 1.05;
 }
 
 .characterCard img {
