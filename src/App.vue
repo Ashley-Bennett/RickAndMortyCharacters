@@ -14,14 +14,16 @@ watch(currentPage, () => {
   characterData.value = null
   submitted.value = true
 })
+
+function searched() {
+  submitted.value = true
+  currentPage.value = 1
+}
 </script>
 
 <template>
   <main>
-    <SearchForm
-      @searchTerm="(term) => (searchTerm = term)"
-      @submitted="(hasSubmitted) => (submitted = hasSubmitted)"
-    />
+    <SearchForm @searchTerm="(term) => (searchTerm = term)" @submitted="searched()" />
     <div v-if="submitted">
       <DataFetcher
         :searchTerm="searchTerm"
@@ -51,5 +53,6 @@ watch(currentPage, () => {
 .characterCardWrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 </style>
