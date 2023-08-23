@@ -29,6 +29,7 @@ function handleSubmit() {
       placeholder="Enter a character's name..."
     />
     <button type="submit">Search</button>
+    <i v-if="hasError">You need a name ya dingus</i>
   </form>
 </template>
 
@@ -42,28 +43,38 @@ form {
 }
 
 input {
-  margin-bottom: 20px;
-  width: 100%;
+  margin-bottom: 10px;
+  width: 70%;
   border-radius: 5px;
   height: 30px;
   padding: 16px 8px;
 }
 
 button {
-  width: 100px;
+  width: 200px;
   border-radius: 5px;
   background: #42b4ca;
   height: 30px;
   color: white;
 }
 .error {
-  outline: red 1px solid;
+  outline: red 2px solid;
   /* transition: all 0.2s ease-in-out; */
   animation-duration: 0.5s;
 }
 
 .wobble {
   animation-name: wobble;
+}
+
+@media only screen and (max-width: 600px) {
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100px;
+  }
 }
 
 @keyframes wobble {

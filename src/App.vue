@@ -5,6 +5,7 @@ import CharacterCard from './components/CharacterCard/CharacterCard.vue'
 import PaginationContainer from './components/Pagination/PaginationContainer.vue'
 import { ref, watch } from 'vue'
 import annoyedRick from '../src/assets/annoyedRick.png'
+import logo from '../src/assets/Rick_and_Morty_Logo.svg'
 
 const searchTerm = ref('')
 const submitted = ref(false)
@@ -28,6 +29,10 @@ function searched() {
 
 <template>
   <main>
+    <div class="logoContainer">
+      <img class="logo" :src="logo" alt="" srcset="" />
+    </div>
+
     <SearchForm @searchTerm="(term) => (searchTerm = term)" @submitted="searched()" />
     <div v-if="submitted">
       <DataFetcher
@@ -63,10 +68,19 @@ function searched() {
 </template>
 
 <style scoped>
+.logoContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 500px;
+}
+
 .characterCardWrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .dataErrorContainer {
@@ -86,5 +100,20 @@ function searched() {
   width: 500px;
   position: absolute;
   bottom: 0;
+}
+@media only screen and (max-width: 600px) {
+  .logo {
+    max-width: 300px;
+  }
+
+  .dataErrorContainer p {
+    font-size: 20px;
+    color: white;
+  }
+}
+@media only screen and (max-width: 760px) {
+  .characterCardWrapper {
+    justify-content: center;
+  }
 }
 </style>

@@ -42,6 +42,12 @@ if (props.characterData) {
   transition: all 0.2s ease-in-out;
 }
 
+@media only screen and (max-width: 600px) {
+  .characterCard {
+    margin: 20px 0;
+  }
+}
+
 .characterCard:hover {
   scale: 1.05;
 }
