@@ -31,6 +31,7 @@ function searched() {
   <main>
     <div class="logoContainer">
       <img class="logo" :src="logo" alt="" srcset="" />
+      Character Database
     </div>
 
     <SearchForm @searchTerm="(term) => (searchTerm = term)" @submitted="searched()" />
@@ -54,6 +55,7 @@ function searched() {
       </div>
       <PaginationContainer
         :totalPages="totalPages"
+        :currentPage="currentPage"
         @goToPage="(goToPage) => (currentPage = goToPage)"
       />
     </div>
@@ -70,7 +72,8 @@ function searched() {
 <style scoped>
 .logoContainer {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .logo {

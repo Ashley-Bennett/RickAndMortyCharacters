@@ -2,7 +2,8 @@
 import PaginationButton from './PaginationButton.vue'
 import { ref, watch } from 'vue'
 const props = defineProps({
-  totalPages: Number
+  totalPages: Number,
+  currentPage: Number
 })
 const emit = defineEmits(['goToPage'])
 
@@ -18,8 +19,14 @@ watch(nextPageSelected, (goToPage) => {
       v-for="(pageNumber, index) in totalPages"
       :key="index"
       :pageNumber="pageNumber"
+      :currentPage="currentPage"
       @pageSelected="(pageSelected) => (nextPageSelected = pageSelected)"
     />
   </ul>
 </template>
-<style></style>
+<style scoped>
+ul {
+  display: flex;
+  justify-content: space-between;
+}
+</style>

@@ -21,45 +21,50 @@ function handleSubmit() {
 </script>
 
 <template lang="">
-  <form @submit.prevent="handleSubmit">
-    <input
-      :class="{ error: hasError, wobble: wobble }"
-      v-model="searchTerm"
-      type="text"
-      placeholder="Enter a character's name..."
-    />
+  <form @submit.prevent="handleSubmit" :class="{ error: hasError, wobble: wobble }">
+    <input v-model="searchTerm" type="text" placeholder="Enter a character's name..." />
     <button type="submit">Search</button>
-    <i v-if="hasError">You need a name ya dingus</i>
   </form>
+  <i v-if="hasError">You need a name ya dingus</i>
 </template>
 
 <style scoped>
 form {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex-direction: row;
+  border: 1px solid #42b4ca;
+  padding: 1px;
+  border-radius: 5px;
+  height: 50px;
+  /* width: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 input {
-  margin-bottom: 10px;
-  width: 70%;
-  border-radius: 5px;
-  height: 30px;
-  padding: 16px 8px;
+  border-radius: 3px 0 0 3px;
+  font-size: 20px;
+  flex-grow: 2;
+  border: none;
+  padding-left: 20px;
+}
+
+input:focus {
+  outline: none;
+}
+
+form:focus-within {
+  outline: 1px solid #bfde42;
 }
 
 button {
-  width: 200px;
-  border-radius: 5px;
+  border: 1px solid #42b4ca;
   background: #42b4ca;
-  height: 30px;
   color: white;
+  width: 200px;
 }
 .error {
   outline: red 2px solid;
-  /* transition: all 0.2s ease-in-out; */
   animation-duration: 0.5s;
 }
 
