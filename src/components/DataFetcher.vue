@@ -12,7 +12,7 @@ onMounted(() => {
   fetchData()
 })
 
-const emit = defineEmits(['submitted', 'characterData', 'totalPages'])
+const emit = defineEmits(['submitted', 'characterData', 'totalPages', 'dataError'])
 
 function fetchData() {
   console.log(props.searchTerm)
@@ -34,12 +34,12 @@ function fetchData() {
     })
     .catch((error) => {
       console.error('Error fetching data: ', error)
+      emit('dataError', true)
     })
     .finally(() => {
-      // loading logic
       emit('submitted', false)
     })
 }
 </script>
-<template lang="">Loading</template>
+<template lang="">loading</template>
 <style lang=""></style>
