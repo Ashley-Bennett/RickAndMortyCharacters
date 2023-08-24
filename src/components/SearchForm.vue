@@ -9,12 +9,12 @@ function handleSubmit() {
   wobble.value = false
 
   if (searchTerm.value) {
-    console.log(searchTerm.value)
     hasError.value = false
     emit('searchTerm', searchTerm)
     emit('submitted', true)
     return ``
   }
+
   wobble.value = true
   hasError.value = true
 }
@@ -36,9 +36,6 @@ form {
   padding: 1px;
   border-radius: 5px;
   height: 50px;
-  /* width: 100%;
-  justify-content: center;
-  align-items: center; */
 }
 
 input {

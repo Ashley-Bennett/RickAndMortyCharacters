@@ -4,6 +4,7 @@ const props = defineProps({
   data: String
 })
 </script>
+
 <template lang="">
   <div class="infoBoxWrapper">
     <p class="bold">{{ dataName }}:</p>
@@ -12,6 +13,7 @@ const props = defineProps({
     </p>
   </div>
 </template>
+
 <style>
 .infoBoxWrapper {
   display: flex;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import { onMounted } from 'vue'
 
 const props = defineProps({
   searchTerm: String,
@@ -7,28 +7,24 @@ const props = defineProps({
 })
 
 onMounted(() => {
-  console.log('here')
-  console.log(props)
   fetchData()
 })
 
 const emit = defineEmits(['submitted', 'characterData', 'totalPages', 'dataError'])
 
 function fetchData() {
-  console.log(props.searchTerm)
-
   fetch(
     `https://rickandmortyapi.com/api/character/?name=${props.searchTerm}&page=${props.currentPage}`
   )
     .then((response) => {
       if (response.ok) {
-        console.log(response)
         return response.json()
       }
-      throw response
+      return response.json().then((response) => {
+        throw new Error(response.error)
+      })
     })
     .then((data) => {
-      console.log(data)
       emit('characterData', data.results)
       emit('totalPages', data.info.pages)
     })
@@ -41,6 +37,7 @@ function fetchData() {
     })
 }
 </script>
+
 <template lang="">
   <div class="loaderContainer">
     <div class="lds-ring">
@@ -51,6 +48,7 @@ function fetchData() {
     </div>
   </div>
 </template>
+
 <style scoped>
 .loaderContainer {
   display: flex;

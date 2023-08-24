@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import PaginationButton from './PaginationButton.vue'
 import { ref, watch } from 'vue'
+
 const props = defineProps({
   totalPages: Number,
   currentPage: Number
 })
-const emit = defineEmits(['goToPage'])
 
+const emit = defineEmits(['goToPage'])
 const nextPageSelected = ref(0)
 
 watch(nextPageSelected, (goToPage) => {
   emit('goToPage', goToPage)
 })
 </script>
+
 <template lang="">
   <ul>
     <PaginationButton
@@ -24,6 +26,7 @@ watch(nextPageSelected, (goToPage) => {
     />
   </ul>
 </template>
+
 <style scoped>
 ul {
   display: flex;

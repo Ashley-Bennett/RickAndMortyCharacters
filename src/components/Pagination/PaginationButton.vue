@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+
 const props = defineProps({
   pageNumber: Number,
   currentPage: Number
 })
+
 const emit = defineEmits(['pageSelected'])
 const isCurrentPage = ref(false)
 
@@ -12,11 +14,6 @@ function handlePageClick(pageNumber: Number) {
 }
 
 function handleCurrentPageClass() {
-  console.log('there')
-  console.log(props.pageNumber)
-  console.log(props.currentPage)
-  console.log(isCurrentPage)
-
   if (props.currentPage === props.pageNumber) {
     isCurrentPage.value = true
   }
@@ -24,11 +21,13 @@ function handleCurrentPageClass() {
 
 handleCurrentPageClass()
 </script>
+
 <template lang="">
   <button :class="{ selected: isCurrentPage }" v-on:click="handlePageClick(pageNumber)">
     {{ pageNumber }}
   </button>
 </template>
+
 <style scoped>
 button {
   padding: 20px;

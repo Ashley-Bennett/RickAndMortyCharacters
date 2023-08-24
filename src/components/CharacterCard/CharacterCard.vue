@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CharacterCardInfoBox from '@/components/CharacterCard/CharacterCardInfoBox.vue'
 import { ref } from 'vue'
+
 const props = defineProps({
   characterData: Object
 })
@@ -16,6 +17,7 @@ if (props.characterData) {
   ]
 }
 </script>
+
 <template lang="">
   <div class="characterCard">
     <h3 class="name">{{ characterData.name }}</h3>
@@ -28,6 +30,7 @@ if (props.characterData) {
     />
   </div>
 </template>
+
 <style scoped>
 .characterCard {
   display: flex;

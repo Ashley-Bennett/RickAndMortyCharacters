@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import SearchForm from '@/components/SearchForm.vue'
 import DataFetcher from '@/components/DataFetcher.vue'
 import CharacterCard from './components/CharacterCard/CharacterCard.vue'
 import PaginationContainer from './components/Pagination/PaginationContainer.vue'
-import { ref, watch } from 'vue'
 import annoyedRick from '../src/assets/annoyedRick.png'
 import logo from '../src/assets/Rick_and_Morty_Logo.svg'
 
@@ -33,7 +33,6 @@ function searched() {
       <img class="logo" :src="logo" alt="" srcset="" />
       Character Database
     </div>
-
     <SearchForm @searchTerm="(term) => (searchTerm = term)" @submitted="searched()" />
     <div v-if="submitted">
       <DataFetcher
